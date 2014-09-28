@@ -24,7 +24,7 @@ app.controller('ShareCtrl', function(Data, $state) {
       console.log('created the document', response);
       $state.go('home.overview');
     }, function(err) {
-      alert(err);
+      alert(JSON.stringify(err));
     });
   };
 });

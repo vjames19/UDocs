@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 module.exports = function(Parse) {
-  var Course = require('./course');
+  var Department = require('./department')(Parse);
   var Document = Parse.Object.extend('Document', {
     asJson: function() {
       return {
@@ -28,7 +28,7 @@ module.exports = function(Parse) {
         filePreview: document.filePreview,
         professor: document.professor,
         course: document.course,
-        department: document.department
+        department: Department.pointer(document.department.objectId)
       });
     },
     search: function(query) {

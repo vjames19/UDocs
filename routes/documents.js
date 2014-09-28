@@ -10,12 +10,14 @@ module.exports = function(Parse) {
 
   var createDocument = function(req, res) {
     var document = req.body;
+    console.log('the doc', document);
     var filePreview = new Preview({debug: true, apiKey: 'Kw7pm9uGJMSxCYt9uhWpGsrYlQowIn'});
     filePreview.generate(document.link, {}, function(err, result) {
       if (err) {
         console.log(err);
         res.status(500).json(err);
       } else {
+
         document.filePreview = result;
         Document.create(document).then(function(document) {
           res.json(document);
