@@ -3,6 +3,19 @@ var _ = require('lodash');
 module.exports = function(Parse) {
   var Course = require('./course');
   var Document = Parse.Object.extend('Document', {
+    asJson: function() {
+      return {
+        name: this.get('name'),
+        kloudAccount: this.get('kloudAccount'),
+        kloudId: this.get('kloudId'),
+        kloudLink: this.get('kloudLink'),
+        mimetype: this.get('mimetype'),
+        filePreview: this.get('filePreview'),
+        professor: this.get('professor'),
+        course: this.get('course'),
+        department: this.get('department')
+      }
+    }
   }, {
     create: function(document) {
       var d = new Document();

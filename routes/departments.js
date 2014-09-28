@@ -16,7 +16,7 @@ module.exports = function(Parse) {
 
   router.get('/', function(req, res) {
     Department.getAll().then(function(departments) {
-      res.json(departments.json());
+      res.json(departments);
     }, function(err) {
       res.json(500, err);
     });

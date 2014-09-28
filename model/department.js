@@ -8,6 +8,9 @@ module.exports = function(Parse) {
       };
     }
   }, {
+    getAll: function() {
+      return new Parse.Query(Department).ascending('name').find();
+    },
     createAll: function(departments) {
       return Parse.Promise.when(_.map(departments, Department.create)).then(function() {
         return _.toArray(arguments);
