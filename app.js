@@ -5,8 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var Parse = require('parse').Parse;
+var APP_ID = 'Xjmqy40E0oZemwQZFJ0aLACjIg68BfSOpvqlNcf0';
+var JS_API_KEY = 'mthNbpHMWngGUbVRt87LIarExnmCNIZJQhEzB4PS';
+Parse.initialize(APP_ID, JS_API_KEY);
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var departments = require('./routes/departments')(Parse);
+var university = require('./routes/university')(Parse);
 
 var app = express();
 
@@ -24,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'app')));
 
 app.use('/', routes);
 app.use('/users', users);
+//app.use('/departments', departments);
+app.use('/university', university);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
