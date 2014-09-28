@@ -11,5 +11,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         url: '/home',
         templateUrl: '/scripts/home/home.html',
         controller: 'HomeCtrl'
+      }).
+      state('test', {
+        url: '/test',
+        templateUrl: '/scripts/test/test.html',
+        controller: 'TestCtrl',
+        controllerAs: 'ctrl'
       });
 }]);
