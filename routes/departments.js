@@ -9,12 +9,18 @@ module.exports = function(Parse) {
       name: req.body.name
     }).then(function(department) {
       res.json(department);
+    }, function(err) {
+      res.json(500, err);
     });
   });
 
-  router.use('/professors', require('./professors')(Parse));
-
-  router.use('/courses', require('./courses')(Parse));
+  router.get('/', function(req, res) {
+    Department.getAll().then(function(departments) {
+      res.json(departments);
+    }, function(err) {
+      res.json(500, err);
+    });
+  });
 
   return router;
 };

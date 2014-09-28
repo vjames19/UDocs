@@ -2,6 +2,11 @@ var _ = require('lodash');
 
 module.exports = function(Parse) {
   var Professor = Parse.Object.extend('Professor', {
+    asJson: function() {
+      return {
+        name: this.get('name')
+      };
+    }
   }, {
     createAll: function(professors) {
       return Parse.Promise.when(_.map(professors, Professor.create)).then(function() {
