@@ -1,19 +1,30 @@
-app.controller('ShareCtrl', function(Data) {
-	this.disableSubmit = true;
-	this.callbacks = {
+app.controller('ShareCtrl', function(Data, $state) {
+  var file = [];
+  this.departments = Data.getDepartments();
+  this.disableSubmit = true;
+  this.callbacks = {
     success: function(files) {
-      console.log('the success callback', files);
-      this.disableSubmit = false;
-      Data.createDocument(files).then(function(response) {
-        console.log('promise', response);
-        this.disableSubmit = true;
-      });
+      file = files[0];
+
+    },
+    cancel: function() {
+      file = null;
+    },
+    error: function() {
+      file = null;
     }
   };
-	this.submitForm = function() {
-		var departmentName = this.department;
-		var courseName = this.course;
-		var professorName = this.professor;
 
-	}
+  this.submitForm = function() {
+    var document = file;
+    document.department = this.department;
+    document.course = this.course;
+    document.professor = this.professor;
+    Data.createDocument(document).then(function(response) {
+      console.log('created the document', response);
+      $state.go('home.overview');
+    }, function(err) {
+      alert(err);
+    });
+  };
 });

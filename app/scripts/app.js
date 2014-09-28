@@ -1,16 +1,36 @@
 var app = angular.module('udocs', [
-  'ui.router'
+  'ui.router',
+  'angular-loading-bar'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('home');
+  $urlRouterProvider.otherwise('/home/overview');
 
   $stateProvider.
       state('home', {
         url: '/home',
+        abstract: true,
         templateUrl: '/scripts/home/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        controllerAs: 'ctrl'
+      }).
+      state('home.overview', {
+        url: '/overview',
+        templateUrl: '/scripts/home/home.overview.html'
+      }).
+      state('home.list', {
+        url: '/list/:objectId/:name',
+        templateUrl: '/scripts/home/home.list.html',
+        controller: function($stateParams) {
+
+          console.log('state', $stateParams);
+          this.selectedDepartment = {
+            name: $stateParams.name,
+            objectId: $stateParams.objectId
+          }
+        },
+        controllerAs: 'other'
       }).
       state('test', {
         url: '/test',
@@ -22,6 +42,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         url: '/share',
         templateUrl: '/scripts/share/share.html',
         controller: 'ShareCtrl',
-        controller: 'ctrl'
+        controllerAs: 'ctrl'
       });
 }]);

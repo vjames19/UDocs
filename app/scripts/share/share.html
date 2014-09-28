@@ -1,33 +1,35 @@
 <section id="main-content">
   <section class="wrapper">
 
-      <div class="row">
-            
-          <div class="col-lg-6 col-lg-offset-2">
+    <div class="row">
 
-	            <div class="row mtbox">
-	            	<form role="form">
-					  <div class="form-group">
-					    <label for="departmentName">Department</label>
-					    <input type="text" class="form-control" id="departmentName" placeholder="Department" ng-model="ctrl.department">
-					  </div>
-					  <div class="form-group">
-					    <label for="courseName">Course</label>
-					    <input type="text" class="form-control" id="courseName" placeholder="Course" ng-model="ctrl.course">
-					  </div>
-					  <div class="form-group">
-					    <label for="professorName">Professor</label>
-					    <input type="text" class="form-control" id="professorName" placeholder="Professor" ng-model="ctrl.professor">
-					  </div>
-				
-					  <file-explorer></file-explorer>
-					  <button type="submit" class="btn btn-default" ng-click="ctrl.submitForm()" ng-disabled="{{disableSubmit}}">Submit</button>
-					</form>
-	            </div><!-- /row mt -->
-            
-          </div><!-- /col-lg-9 END SECTION MIDDLE -->
-                          
-          
-      </div><!--/row -->
+      <div class="col-lg-6 col-lg-offset-2">
+
+        <div class="row mtbox">
+          <form role="form">
+            <div class="form-group">
+              <label for="departmentName">Department</label>
+              <select class="form-control" id="departmentName" placeholder="Department" ng-model="ctrl.department"
+                      ng-options="department.name for department in ctrl.departments">
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="courseName">Course</label>
+              <input type="text" class="form-control" id="courseName" placeholder="Course" ng-model="ctrl.course">
+            </div>
+            <div class="form-group">
+              <label for="professorName">Professor</label>
+              <input type="text" class="form-control" id="professorName" placeholder="Professor" ng-model="ctrl.professor">
+            </div>
+
+            <file-explorer callbacks="ctrl.callbacks"></file-explorer>
+            <button type="submit" class="btn btn-default" ng-click="ctrl.submitForm()">Submit</button>
+          </form>
+        </div><!-- /row mt -->
+
+      </div><!-- /col-lg-9 END SECTION MIDDLE -->
+
+
+    </div><!--/row -->
   </section>
 </section>

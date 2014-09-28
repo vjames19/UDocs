@@ -1,0 +1,21 @@
+<div>
+  <h3 ui-sref="home.list({name: department.name, objectId: department.objectId})">{{ department.name }}</h3>
+</div>
+
+<div class="row mt">
+  <div class="col-md-4 col-sm-4 mb" ng-repeat="document in documents | limitTo:limit">
+    <div class="white-panel pn">
+      <div class="white-header">
+        <h5>{{ document.name }}</h5>
+      </div>
+      <div class="centered">
+        <a href="{{ document.kloudLink }}"><img ng-src="{{ getThumbnail(document) }}"width="150">
+        </a>
+      </div>
+    </div>
+    <div class="pr2-social centered">
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-facebook"></i></a>
+    </div>
+  </div><!-- /col-md-4 -->
+</div><!-- /row -->

@@ -14,6 +14,7 @@
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -29,21 +30,37 @@
         <link href="assets/css/bootstrap.css" rel="stylesheet">
         <!--external css-->
         <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
         <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
         <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
         
         <!-- Custom styles for this template -->
         <link href="assets/css/style.css" rel="stylesheet">
         <link href="assets/css/style-responsive.css" rel="stylesheet">
-
-        <script src="assets/js/chart-master/Chart.js"></script>
     </head>
     <body ng-app="udocs">
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="main">
+          <section id="container" >
+            <!-- **********************************************************************************************************************************************************
+            TOP BAR CONTENT & NOTIFICATIONS
+            *********************************************************************************************************************************************************** -->
+            <!--header start-->
+            <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                <i class="fa fa-book fa-2x"></i>
+              </div>
+              <!--logo start-->
+              <a href="/" class="logo"><b>UDocs</b></a>
+              <!--logo end-->
+              <div class="pull-right">
+                <a ui-sref="share"><h2>Share</h2></a>
+              </div>
+            </header>
+            <!--header end-->
+
+          </section>
           <div ui-view></div>
         </div>
 
@@ -64,6 +81,7 @@
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -91,6 +109,7 @@
         <script src="scripts/file-explorer/file-explorer-directive.js"></script>
         <script src="scripts/file-explorer/file-explorer-service.js"></script>
         <script src="scripts/common/data.js"></script>
+        <script src="scripts/home/department-row-directive.js"></script>
         <!-- endbuild -->
 
 
@@ -109,8 +128,5 @@
         <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
 
         <!--script for this page-->
-        <script src="assets/js/sparkline-chart.js"></script>    
-        <script src="assets/js/zabuto_calendar.js"></script>    
-
     </body>
 </html>
