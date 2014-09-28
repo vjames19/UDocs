@@ -1,6 +1,7 @@
 var _ = require('lodash');
 
 module.exports = function(Parse) {
+  var Course = require('./course')(Parse);
   var Department = Parse.Object.extend('Department', {
   }, {
     createAll: function(departments) {
@@ -9,9 +10,12 @@ module.exports = function(Parse) {
       })
     },
     create: function(department) {
-      var d = new Department();
-      return d.save({
-        name: department.name
+      return Parse.Promise.when(Course.createAll(department.courses)).then(function(courses) {
+        var d = new Department();
+        return d.save({
+          name: department.name,
+          courses: courses
+        });
       });
     }
   });
