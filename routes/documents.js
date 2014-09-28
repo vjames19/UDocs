@@ -8,7 +8,6 @@ module.exports = function(Parse) {
 
   var createDocument = function(req, res) {
     var document = req.body;
-    console.log('' + document.link);
     var filePreview = new Preview({debug: true, apiKey: 'Kw7pm9uGJMSxCYt9uhWpGsrYlQowIn'});
     filePreview.generate(document.link, {}, function(err, result) {
       if (err) {
@@ -20,11 +19,25 @@ module.exports = function(Parse) {
           res.json(document);
         });
       }
+    });
+  };
 
+  var query = function(req, res) {
+    var documentQuery = new Parse.Query(Document);
+    if(req.query.departmentId) {
+      documentQuery.equalTo('department', Department.pointer(req.query.departmentId))
+    }
+    documentQuery.descending('createdAt');
+
+    documentQuery.find().then(function(documents) {
+      res.json(documents);
+    }, function(err) {
+      res.json(500, err);
     });
   };
 
   router.post('/', createDocument);
+  router.get('/', query);
 
   return router;
 };

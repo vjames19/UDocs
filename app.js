@@ -10,10 +10,7 @@ var APP_ID = 'Xjmqy40E0oZemwQZFJ0aLACjIg68BfSOpvqlNcf0';
 var JS_API_KEY = 'mthNbpHMWngGUbVRt87LIarExnmCNIZJQhEzB4PS';
 Parse.initialize(APP_ID, JS_API_KEY);
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var university = require('./routes/university')(Parse);
-var documents = require('./routes/documents')(Parse);
+var api = require('./routes/api')(Parse);
 
 var app = express();
 
@@ -29,10 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/university', university);
-app.use('/documents', documents);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

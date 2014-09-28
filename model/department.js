@@ -1,8 +1,12 @@
 var _ = require('lodash');
 
 module.exports = function(Parse) {
-  var Course = require('./course')(Parse);
   var Department = Parse.Object.extend('Department', {
+    asJson: function() {
+      return {
+        name: this.get('name')
+      };
+    }
   }, {
     createAll: function(departments) {
       return Parse.Promise.when(_.map(departments, Department.create)).then(function() {
@@ -10,13 +14,15 @@ module.exports = function(Parse) {
       })
     },
     create: function(department) {
-      return Parse.Promise.when(Course.createAll(department.courses)).then(function(courses) {
-        var d = new Department();
-        return d.save({
-          name: department.name,
-          courses: courses
-        });
+      var d = new Department();
+      return d.save({
+        name: department.name
       });
+    },
+    pointer: function(id) {
+      var department = new Department();
+      department.id = id;
+      return department;
     }
   });
 

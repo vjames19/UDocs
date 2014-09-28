@@ -11,6 +11,14 @@ module.exports = function(Parse) {
     });
   });
 
+  router.get('/:universityId', function(req, res) {
+    University.get(req.params.universityId).then(function(university) {
+      res.json(university.asJson());
+    }, function(err) {
+      res.status(500).json(err);
+    });
+  });
+
   router.use('/departments', require('./departments')(Parse));
 
   return router;

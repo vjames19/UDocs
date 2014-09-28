@@ -12,19 +12,23 @@ module.exports = function(Parse) {
         kloudId: document.id,
         kloudLink: document.link,
         mimetype: document.filePreview.mimetype,
-        filePreview: document.filePreview
+        filePreview: document.filePreview,
+        professor: document.professor,
+        course: document.course,
+        department: document.department
       });
     },
     search: function(query) {
       var nameSearch = new Parse.Query(Document).
           matches('name', query, 'i');
+      var courseSearch = new Parse.Query(Document).
+          matches('course', query, 'i');
+      var professorSearch = new Parse.Query(Document).
+          matches('professor', query, 'i');
 
-      var courseSearch = new Parse.Query(Course).
-          matches('name', query, 'i');
-      var searchByCourse = new Parse.Query(Course).
-          matchesKeyInQuery('course', 'objectId', courseSearch);
-
-      return Parse.Query.or(nameSearch, searchByCourse);
+      return Parse.Query.or(nameSearch, courseSearch, professorSearch).
+          descending('createdAt').
+          find();
     }
   });
 
