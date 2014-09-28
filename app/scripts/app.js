@@ -17,5 +17,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         templateUrl: '/scripts/test/test.html',
         controller: 'TestCtrl',
         controllerAs: 'ctrl'
+      }).
+      state('share', {
+        url: '/share',
+        templateUrl: '/scripts/share/share.html',
+        controller: 'ShareCtrl',
+        controller: 'ctrl'
       });
 }]);
