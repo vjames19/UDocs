@@ -12,5 +12,9 @@ module.exports = function(Parse) {
     });
   });
 
+  router.use('/professors', require('./professors')(Parse));
+
+  router.use('/courses', require('./courses')(Parse));
+
   return router;
 };
