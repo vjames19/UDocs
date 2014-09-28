@@ -13,7 +13,7 @@ MAIN CONTENT
             </form>
             <div class="row mtbox">
                 <div class="col-md-2 col-sm-2 col-md-offset-1 box0" ng-repeat="department in ctrl.departments | limitTo: 4">
-                    <div class="box1">
+                    <div class="box1" ui-sref="home.list({name: department.name, objectId: department.objectId})">
                         <i class="fa fa-building-o fa-5x"></i>
                         <h4>{{ department.name }} </h4>
                     </div>

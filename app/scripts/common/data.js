@@ -16,12 +16,6 @@ app.service('Data', function($http) {
         "updatedAt": "2014-09-28T14:06:05.886Z"
       },
       {
-        "name": "Chemistry",
-        "objectId": "C73yUnW0uJ",
-        "createdAt": "2014-09-28T14:05:50.136Z",
-        "updatedAt": "2014-09-28T14:05:50.136Z"
-      },
-      {
         "name": "Computer Engineering",
         "objectId": "Cl0OktUBsv",
         "createdAt": "2014-09-28T14:05:41.063Z",
@@ -38,6 +32,12 @@ app.service('Data', function($http) {
         "objectId": "QRTmVNiWyi",
         "createdAt": "2014-09-28T14:05:31.802Z",
         "updatedAt": "2014-09-28T14:05:31.802Z"
+      },
+      {
+        "name": "Chemistry",
+        "objectId": "C73yUnW0uJ",
+        "createdAt": "2014-09-28T14:05:50.136Z",
+        "updatedAt": "2014-09-28T14:05:50.136Z"
       },
       {
         "name": "Humanities",

@@ -28,7 +28,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
           this.selectedDepartment = {
             name: $stateParams.name,
             objectId: $stateParams.objectId
-          }
+          };
         },
         controllerAs: 'other'
       }).
