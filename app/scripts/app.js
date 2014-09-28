@@ -32,6 +32,23 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         },
         controllerAs: 'other'
       }).
+      state('home.search', {
+        url: '/search/:text',
+        templateUrl: '/scripts/home/home.search.html',
+        controller: function($stateParams, Data) {
+          console.log($stateParams);
+          var self = this;
+          Data.searchDocuments($stateParams.text).then(function(documents) {
+            self.documents = documents.data;
+          });
+
+          this.getThumbnail = function (document) {
+            console.log(document);
+            return document.filePreview.metadata.results.thumbnails[0].url;
+          };
+        },
+        controllerAs: 'search'
+      }).
       state('test', {
         url: '/test',
         templateUrl: '/scripts/test/test.html',

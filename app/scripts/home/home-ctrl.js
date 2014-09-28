@@ -1,6 +1,6 @@
-app.controller('HomeCtrl', function(Data) {
+app.controller('HomeCtrl', function($state, Data) {
   this.departments = Data.getDepartments();
   this.search = function() {
-    console.log('searching', this.searchText);
+    $state.go('home.search', {text: this.searchText});
   }
 });
